@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Structure to represent a question
+struct Question {
+    string question;
+    string options[4];
+    int correctOption;
+};
+
+int main() {
+    // Define questions
+    Question questions[] = {
+        {"What is the capital of France?", {"Paris", "London", "Berlin", "Rome"}, 0},
+        {"Who wrote 'To Kill a Mockingbird'?", {"F. Scott Fitzgerald", "Harper Lee", "Jane Austen", "J.K. Rowling"}, 1},
+        {"What is the largest planet in our solar system?", {"Earth", "Saturn", "Jupiter", "Uranus"}, 2},
+        {"Which programming language is used for this quiz game?", {"C", "C++", "Java", "Python"}, 1}
+    };
+
+    int numQuestions = sizeof(questions) / sizeof(questions[0]);
+    int score = 0;
+
+    // Ask each question
+    for (int i = 0; i < numQuestions; i++) {
+        cout << "Question " << i + 1 << ": " << questions[i].question << endl;
+
+        // Display options
+        for (int j = 0; j < 4; j++) {
+            cout << j + 1 << ". " << questions[i].options[j] << endl;
+        }
+
+        int userAnswer;
+        cout << "Enter the number of your answer: ";
+        cin >> userAnswer;
+
+        // Check if the user's answer is correct
+        if (userAnswer - 1 == questions[i].correctOption) {
+            cout << "Correct!" << endl;
+            score++;
+        } else {
+            cout << "Incorrect. The correct answer was " << questions[i].options[questions[i].correctOption] << "." << endl;
+        }
+
+        cout << endl;
+    }
+
+    // Display final score
+    cout << "Your final score is " << score << " out of " << numQuestions << "." << endl;
+
+    return 0;
+}
